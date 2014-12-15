@@ -14,7 +14,7 @@ var FluxWebappGenerator = yeoman.generators.Base.extend({
 
     // Have Yeoman greet the user.
     this.log(yosay(
-      'Welcome to the incredible FluxWebapp generator!'
+      'Welcome to the Flux and React based Webapp generator!'
     ));
 
     var prompts = [{
@@ -30,54 +30,70 @@ var FluxWebappGenerator = yeoman.generators.Base.extend({
   },
 
   writing: {
-    app: function () {
-
-      var context = {
-        title: this.name,
-        description: 'Flux Webapp application',
-        appname: this.name
-      };
-
-      this.template('_package.json', 'package.json', context);
-      this.src.copy('_bower.json', 'bower.json');
-      this.dest.mkdir('config');
-      this.dest.mkdir('src');
-      this.dest.mkdir('src/actions');
-      this.dest.mkdir('src/assets');
-      this.dest.mkdir('src/components');
-      this.dest.mkdir('src/constants');
-      this.dest.mkdir('src/images');
-      this.dest.mkdir('src/layouts');
-      this.dest.mkdir('src/pages');
-      this.template('src/pages/404.html');
-      this.template('src/pages/_template.html', 'src/pages/_template.html', context);
-      this.src.copy('src/actions/RouteActions.js', 'src/actions/RouteActions.js');
-      this.src.copy('src/pages/Index.jsx', 'src/pages/Index.jsx');
-      this.src.copy('src/pages/Privacy.jsx', 'src/pages/Privacy.jsx');
-      this.directory('src/assets/', 'src/assets/');
-      this.directory('src/components/', 'src/components/');
-      this.directory('src/constants/', 'src/constants/');
-      this.directory('src/images/', 'src/images/');
-      this.directory('src/layouts/', 'src/layouts/');
-      this.directory('src/styles/', 'src/styles/');
-      this.directory('config/', 'config/');
-      this.src.copy('src/app.js', 'src/app.js');
-      this.src.copy('src/AppDispatcher.js', 'src/AppDispatcher.js');
-
+    packageJSON: function () {
+        var context = {
+            title: this.name,
+            description: 'Flux Webapp application',
+            appname: this.name
+        };
+        this.template('_package.json', 'package.json', context);
     },
-
+    app: function () {
+        this.dest.mkdir('src');
+          var folders = [
+                'docs',
+                'gulp',
+                'jest',
+                'src/images',
+                'src/scripts',
+                'src/styles',
+                'src/template',
+                'src/scripts/actions',
+                'src/scripts/components',
+                'src/scripts/components/__tests__',
+                'src/scripts/constants',
+                'src/scripts/dispatcher',
+                'src/scripts/stores',
+                'src/scripts/stores/__tests__',
+                'src/scripts/utils',
+                'src/scripts/utils/__tests__'
+          ];
+          folders.forEach(function(value) {
+              this.dest.mkdir(value);
+          }, this);
+    },
+    fluxfiles: function () {
+        this.copy('src/dispatcher/AppDispatcher.js', 'src/scripts/dispatcher/AppDispatcher.js');
+        this.copy('src/constants/ActionTypes.js', 'src/scripts/constants/ActionTypes.js');
+        this.copy('src/actions/ServerActionCreators.js', 'src/scripts/actions/ServerActionCreators.js');
+        this.copy('src/actions/ViewActionCreators.js', 'src/scripts/actions/ViewActionCreators.js');
+        this.copy('src/routes.jsx', 'src/scripts/routes.jsx');
+        this.copy('src/router.js', 'src/scripts/router.js');
+        this.copy('src/app.jsx', 'src/scripts/app.jsx');
+    },
+    gulpfiles: function () {
+        this.copy('gulpfile.js', 'gulpfile.js');
+        this.copy('gulp/dev_server.js', 'gulp/dev_server.js');
+        this.copy('gulp/flatui.js', 'gulp/flatui.js');
+    },
+    indexfiles: function () {
+        this.copy('index.html', 'index.html');
+        this.copy('src/template/index.html', 'src/template/index.html');
+    },
+    webpackfiles: function () {
+        this.copy('webpack-dev.config.js', 'webpack-dev.config.js');
+        this.copy('webpack.config.js', 'webpack.config.js');
+    },
+    jestfiles: function () {
+        this.copy('jest/preprocessor.js', 'jest/preprocessor.js');
+    },
     projectfiles: function () {
-      this.src.copy('editorconfig', '.editorconfig');
-      this.src.copy('jshintrc', '.jshintrc');
-      this.src.copy('_.gitignore', '.gitignore');
-      this.src.copy('gulpfile.js', 'gulpfile.js');
-      this.src.copy('LICENSE.txt', 'LICENSE.txt');
-      this.src.copy('README.md', 'README.md');
+       this.copy('LICENSE.txt', 'LICENSE.txt');
+       this.copy('README.md', 'README.md');
     }
   },
-
   end: function () {
-    this.installDependencies();
+        this.installDependencies();
   }
 });
 
