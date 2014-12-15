@@ -16,7 +16,7 @@ It is a modified version of [Aldo Nievas's](https://github.com/alduro) [generato
 # Usage
 ## Install
 ```js
-npm install cybersiddhu/generator-fluxapp
+npm install cybersiddhu/generator-flux-webapp
 ```
 
 ## Create project
