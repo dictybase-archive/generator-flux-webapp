@@ -1,87 +1,96 @@
-# React / Flux &nbsp;Starter Kit
+# Application name
 
-[![Build Status](http://img.shields.io/travis/kriasoft/react-starter-kit/master.svg?style=flat)](http://travis-ci.org/kriasoft/react-starter-kit)
-[![Dependency Status](https://david-dm.org/kriasoft/react-starter-kit.svg?style=flat)](https://david-dm.org/kriasoft/react-starter-kit)
-[![devDependency Status](https://david-dm.org/kriasoft/react-starter-kit/dev-status.svg?style=flat)](https://david-dm.org/kriasoft/react-starter-kit#info=devDependencies)
-[![Tips](http://img.shields.io/gratipay/koistya.svg?style=flat)](https://gratipay.com/koistya)
-[![Gitter](http://img.shields.io/badge/chat-online-brightgreen.svg?style=flat)](https://gitter.im/kriasoft/react-starter-kit)
+This web application (SPA) based on Facebook's [React](https://facebook.github.io/react/)
+library and [Flux](http://facebook.github.io/flux/) architecture. 
 
-> This project template is a skeleton for an [isomorphic](http://nerds.airbnb.com/isomorphic-javascript-future-web-apps/)
-> web application (SPA) based on Facebook's [React](https://facebook.github.io/react/)
-> library and [Flux](http://facebook.github.io/flux/) architecture. You can use
-> it to quickly bootstrap your web application projects. It contains only
-> client-side components and development tools.
+# Usage
+## Install
+Clone this repository and run
 
-[![Facebook React Starter Kit](https://dl.dropboxusercontent.com/u/16006521/Screens/facebook-react-starter-kit.png)](https://github.com/kriasoft/react-starter-kit)
-
-**Demo**: http://reactjs.kriasoft.com
-
-### Directory Layout
-
-```
-.
-├── /build/                     # The folder for compiled output
-├── /config/                    # Configuration files for Webpack, Jest etc.
-├── /docs/                      # Documentation files for the project
-├── /node_modules/              # 3rd-party libraries and utilities
-├── /src/                       # The source code of the application
-│   ├── /actions/               # Action creators that allow to trigger a dispatch to stores
-│   ├── /assets/                # Static files which are copied to ./build on compile
-│   ├── /constants/             # Enumerations used in action creators and stores
-│   ├── /components/            # React components. E.g. Navbar.jsx, Calendar.jsx
-│   ├── /images/                # Graphics (.png, .jpg, .svg etc.)
-│   ├── /layouts/               # Shared layouts for top-level components
-│   ├── /pages/                 # Top-level, URL-bound React components
-│   ├── /stores/                # Stores contain the application state and logic
-│   ├── /styles/                # CSS style sheets (or LESS, SASS, Stylus)
-│   ├── /app.js                 # The application's bootstrap file, entry point
-│   └── /AppDispatcher.js       # The central hub that manages all data flow (see Flux)
-├── /test/                      # Unit, integration and load tests
-│   ├── /e2e/                   # End-to-end tests
-│   └── /unit/                  # Unit tests
-│── gulpfile.js                 # Configuration file for automated builds
-└── package.json                # The list of 3rd party libraries and utilities
+```js
+npm install
 ```
 
-### Getting Started
+## Run
 
-This yeoman generator is based on https://github.com/kriasoft/react-starter-kit:
-
-```shell
-$ npm install -g generator-flux-webapp
+```js
+gulp
 ```
 
+This will start a lightweight webpack development
+[server](http://webpack.github.io/docs/webpack-dev-server.html) on port 9000.
+The setup includes live reload and synchronization across multiple devices and
+browsers.
 
-```shell
-$ mkdir demo-app
-$ cd demo-app
-$ yo flux-webapp 
-$ gulp
+## Build
+
+```js
+gulp build
 ```
 
-### How to Build
-```shell
-$ gulp build                    # or, `gulp build --release`
+The build will be generated in ```build``` folder including and ```index.html```
+
+## Deploy
+
+```js
+gulp deploy
 ```
 
-By default, it builds in debug mode. If you need to build in release mode, add
-`--release` flag.
+This will deploy the build to the github [pages](https://pages.github.com/)
 
-### How to Run
+## Development
+For development contributions, it is recommended to fork this repository or
+clone and work in separate branch(anything other than develop or master). To
+understand the workflow look at the contribution file.
 
-```shell
-$ gulp                          # or, `gulp --release`
+The webapp is organized using the following layout.
+
+### Project Layout
+
+├── build/                      # The folder for compiled output, will be created after running the first build.
+├── docs/                       # Documentation files for the project
+├── gulp/                       # The folder for gulp tasks
+│   ├── dev_server.js           # Tasks for running developmental server, build and deploy
+│   └── flatui.js               # Tasks for managing installation of Flat-UI bootstrap theme.
+├── jest/                       # The folder for jest configuration files
+│   └── preprocessor.js         # Jest preprocessor file for JSX transformation
+├── src/                        # The source code of the application
+│   ├── images/                 # The folder for static images
+│   ├── scripts/                # Source code for various parts of flux architecture
+│   │   ├── actions/            # Action creators that allow to trigger a dispatch to stores
+│   │   ├── components/         # React components. E.g. Navbar.jsx, Calendar.jsx
+│   │   │   ├── __tests__/      # Unit tests for components, mainly jest based.
+│   │   ├── constants/          # Enumerations used in action creators and stores
+│   │   ├── dispatcher/         # Application specific dispatcher
+│   │   ├── stores/             # Stores contain the application state and logic
+│   │   │   ├── __tests__/      # Unit tests for stores, mainly jest based.
+│   │   ├── utils/              # API to interact with data store(server or clientside), generally called by action creators
+│   │   └── app.jsx             # Entry point for application
+│   ├── styles/                 # CSS style sheets, default is less
+│   │   ├── vendor/             # Folder for third patry CSS framework
+│   │   └── main.less           # Entry point for stylesheet customization
+│   └── template/               # The folder for any kind of templates
+│       └── index.html          # A template file to make the index file for the build process
+├── gulpfile.js                 # Primary gulp configuration file, use to source custom one from gulp/ folder
+├── index.html                  # Index file needed for webpack dev server
+├── LICENSE                     # Default MIT license 
+├── package.json                # Dependency management file for npm
+├── README.md                   # This file.
+├── webpack.config.js           # Webpack config file for build task
+└── webpack-dev.config.js       # Webpack config file for running the developmental server
+
 ```
 
-This will start a lightweight development server with LiveReload and
-synchronized browsing across multiple devices and browsers.
+### Flux architecture
 
-### How to Deploy
+Here is the canonical flux architecture
 
-```shell
-$ gulp deploy                   # or, `gulp deploy --production`
-```
+<img src="https://github.com/facebook/flux/raw/master/docs/img/flux-diagram-white-background.png" style="width: 100%;" />
 
-You can deploy to different destinations by adding a corresponding flag.
-For example `--production` or `--staging` etc. See the 'deploy' task in
-`gulpfile.js`.
+And few pointers to get started.
+
+* [Flux for Stupid People](http://blog.andrewray.me/flux-for-stupid-people/) by [Andrew Ray](https://github.com/DelvarWorld)
+* [What is Flux?](http://fluxxor.com/what-is-flux.html) by [Brandon Tilley](https://github.com/BinaryMuse/)
+* [Rethinking Web App Development at Facebook](http://www.youtube.com/watch?v=nYkdrAPrdcw) by [Pete Hunt](https://github.com/petehunt)
+* [The State of Flux](https://reactjsnews.com/the-state-of-flux/) by [David Chang](http://davidandsuzi.com/)
+
