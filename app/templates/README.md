@@ -66,6 +66,8 @@ The webapp is organized using the following layout.
 │   │   │   ├── __tests__/      # Unit tests for stores, mainly jest based.
 │   │   ├── utils/              # API to interact with data store(server or clientside), generally called by action creators
 │   │   └── app.jsx             # Entry point for application
+│   │   └── router.js           # Router instance to use the routes defintion
+│   │   └── routes.jsx          # Client side routing definition
 │   ├── styles/                 # CSS style sheets, default is less
 │   │   ├── vendor/             # Folder for third patry CSS framework
 │   │   └── main.less           # Entry point for stylesheet customization
