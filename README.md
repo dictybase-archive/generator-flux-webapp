@@ -1,87 +1,114 @@
-# React / Flux &nbsp;Starter Kit
+# Flux/ReactJS generator
 
-[![Build Status](http://img.shields.io/travis/kriasoft/react-starter-kit/master.svg?style=flat)](http://travis-ci.org/kriasoft/react-starter-kit)
-[![Dependency Status](https://david-dm.org/kriasoft/react-starter-kit.svg?style=flat)](https://david-dm.org/kriasoft/react-starter-kit)
-[![devDependency Status](https://david-dm.org/kriasoft/react-starter-kit/dev-status.svg?style=flat)](https://david-dm.org/kriasoft/react-starter-kit#info=devDependencies)
-[![Tips](http://img.shields.io/gratipay/koistya.svg?style=flat)](https://gratipay.com/koistya)
-[![Gitter](http://img.shields.io/badge/chat-online-brightgreen.svg?style=flat)](https://gitter.im/kriasoft/react-starter-kit)
+[Yeoman](http://yeoman.io) generator for web application (SPA) based on
+Facebook's [React](https://facebook.github.io/react/) library and
+[Flux](http://facebook.github.io/flux/) architecture. Use it to quickly
+bootstrap your web application projects. 
+It is a modified version of [Aldo Nievas's](https://github.com/alduro) [generator](https://github.com/alduro/generator-flux-webapp).
 
-> This project template is a skeleton for an [isomorphic](http://nerds.airbnb.com/isomorphic-javascript-future-web-apps/)
-> web application (SPA) based on Facebook's [React](https://facebook.github.io/react/)
-> library and [Flux](http://facebook.github.io/flux/) architecture. You can use
-> it to quickly bootstrap your web application projects. It contains only
-> client-side components and development tools.
+## Batteries included
+* [Gulp](http://gulpjs.com) build system.
+* [Webpack](http://webpack.github.io) module builder with hot loader and dev server.
+* [React-hot-loader](http://gaearon.github.io/react-hot-loader/) for automated build on edit.
+* Beautiful [flat-ui](http://designmodo.github.io/Flat-UI/) theme for boostrap. 
+* [Jest](http://facebook.github.io/jest/) based unit testing.
 
-[![Facebook React Starter Kit](https://dl.dropboxusercontent.com/u/16006521/Screens/facebook-react-starter-kit.png)](https://github.com/kriasoft/react-starter-kit)
-
-**Demo**: http://reactjs.kriasoft.com
-
-### Directory Layout
-
-```
-.
-├── /build/                     # The folder for compiled output
-├── /config/                    # Configuration files for Webpack, Jest etc.
-├── /docs/                      # Documentation files for the project
-├── /node_modules/              # 3rd-party libraries and utilities
-├── /src/                       # The source code of the application
-│   ├── /actions/               # Action creators that allow to trigger a dispatch to stores
-│   ├── /assets/                # Static files which are copied to ./build on compile
-│   ├── /constants/             # Enumerations used in action creators and stores
-│   ├── /components/            # React components. E.g. Navbar.jsx, Calendar.jsx
-│   ├── /images/                # Graphics (.png, .jpg, .svg etc.)
-│   ├── /layouts/               # Shared layouts for top-level components
-│   ├── /pages/                 # Top-level, URL-bound React components
-│   ├── /stores/                # Stores contain the application state and logic
-│   ├── /styles/                # CSS style sheets (or LESS, SASS, Stylus)
-│   ├── /app.js                 # The application's bootstrap file, entry point
-│   └── /AppDispatcher.js       # The central hub that manages all data flow (see Flux)
-├── /test/                      # Unit, integration and load tests
-│   ├── /e2e/                   # End-to-end tests
-│   └── /unit/                  # Unit tests
-│── gulpfile.js                 # Configuration file for automated builds
-└── package.json                # The list of 3rd party libraries and utilities
+# Usage
+## Install
+```js
+npm install cybersiddhu/generator-fluxapp
 ```
 
-### Getting Started
+## Create project
 
-This yeoman generator is based on https://github.com/kriasoft/react-starter-kit:
-
-```shell
-$ npm install -g generator-flux-webapp
+```js
+mkdir demox && cd demox
+yo flux-webapp
 ```
 
+The above will generate a project with the following folder layout
 
-```shell
-$ mkdir demo-app
-$ cd demo-app
-$ yo flux-webapp 
-$ gulp
+### Project Layout
+
+```
+├── build/                      # The folder for compiled output, will be created after running the first build.
+├── docs/                       # Documentation files for the project
+├── gulp/                       # The folder for gulp tasks
+│   ├── dev_server.js           # Tasks for running developmental server, build and deploy
+│   └── flatui.js               # Tasks for managing installation of Flat-UI bootstrap theme.
+├── jest/                       # The folder for jest configuration files
+│   └── preprocessor.js         # Jest preprocessor file for JSX transformation
+├── src/                        # The source code of the application
+│   ├── images/                 # The folder for static images
+│   ├── scripts/                # Source code for various parts of flux architecture
+│   │   ├── actions/            # Action creators that allow to trigger a dispatch to stores
+│   │   ├── components/         # React components. E.g. Navbar.jsx, Calendar.jsx
+│   │   │   ├── __tests__/      # Unit tests for components, mainly jest based.
+│   │   ├── constants/          # Enumerations used in action creators and stores
+│   │   ├── dispatcher/         # Application specific dispatcher
+│   │   ├── stores/             # Stores contain the application state and logic
+│   │   │   ├── __tests__/      # Unit tests for stores, mainly jest based.
+│   │   ├── utils/              # API to interact with data store(server or clientside), generally called by action creators
+│   │   └── app.jsx             # Entry point for application
+│   │   └── router.js           # Router instance to use the routes defintion
+│   │   └── routes.jsx          # Client side routing definition
+│   ├── styles/                 # CSS style sheets, default is less
+│   │   ├── vendor/             # Folder for third patry CSS framework
+│   │   └── main.less           # Entry point for stylesheet customization
+│   └── template/               # The folder for any kind of templates
+│       └── index.html          # A template file to make the index file for the build process
+├── gulpfile.js                 # Primary gulp configuration file, use to source custom one from gulp/ folder
+├── index.html                  # Index file needed for webpack dev server
+├── LICENSE                     # Default MIT license 
+├── package.json                # Dependency management file for npm
+├── README.md                   # This file.
+├── webpack.config.js           # Webpack config file for build task
+└── webpack-dev.config.js       # Webpack config file for running the developmental server
+
 ```
 
-### How to Build
-```shell
-$ gulp build                    # or, `gulp build --release`
+## Default tasks included
+
+### Run
+
+```js
+gulp
 ```
 
-By default, it builds in debug mode. If you need to build in release mode, add
-`--release` flag.
+This will start a lightweight webpack development
+[server](http://webpack.github.io/docs/webpack-dev-server.html) on port 9000.
+The setup includes live reload and synchronization across multiple devices and
+browsers.
 
-### How to Run
+### Build
 
-```shell
-$ gulp                          # or, `gulp --release`
+```js
+gulp build
 ```
 
-This will start a lightweight development server with LiveReload and
-synchronized browsing across multiple devices and browsers.
+The build will be generated in ```build``` folder including and ```index.html```
 
-### How to Deploy
+### Deploy
 
-```shell
-$ gulp deploy                   # or, `gulp deploy --production`
+```js
+gulp deploy
 ```
 
-You can deploy to different destinations by adding a corresponding flag.
-For example `--production` or `--staging` etc. See the 'deploy' task in
-`gulpfile.js`.
+This will deploy the build to the github [pages](https://pages.github.com/)
+
+### Stylesheet
+
+```js
+gulp setup:flatcss
+```
+
+The above sets up a [flat](https://github.com/designmodo/Flat-UI) theme for
+[bootstrap3](http://getbootstrap.com). The theme is imported and can be
+customized from ```main.less``` file in stylesheet folder. To use it in the
+application import it from the main entry point(app.jsx).
+
+### Unit testing
+
+```js
+npm test
+```

@@ -38,6 +38,13 @@ gulp deploy
 
 This will deploy the build to the github [pages](https://pages.github.com/)
 
+
+## Unit testing
+
+```js
+npm test
+```
+
 ## Development
 For development contributions, it is recommended to fork this repository or
 clone and work in separate branch(anything other than develop or master). To
@@ -47,6 +54,7 @@ The webapp is organized using the following layout.
 
 ### Project Layout
 
+```
 ├── build/                      # The folder for compiled output, will be created after running the first build.
 ├── docs/                       # Documentation files for the project
 ├── gulp/                       # The folder for gulp tasks
