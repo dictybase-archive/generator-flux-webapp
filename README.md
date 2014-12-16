@@ -79,8 +79,10 @@ Also all the generated stub files include some boilerplate code to get started.
 yo flux-webapp:component photo
 ```
 
-Will produces ```src/scripts/components/Photo.jsx``` and
-```src/scripts/components/__tests__/Photo-test.js```
+Will produces  ```src/scripts/components/Photo.jsx```  and
+```
+src/scripts/components/__tests__/Photo-test.js
+```
 
 #### Store
 
@@ -89,7 +91,9 @@ yo flux-webapp:store photo
 ```
 
 Will produces ```src/scripts/stores/PhotoStore.js``` and
-```src/scripts/stores__tests__/PhotoStore-test.js```
+```
+src/scripts/stores__tests__/PhotoStore-test.js
+```
 
 
 ### Run
