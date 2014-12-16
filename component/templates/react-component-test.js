@@ -16,3 +16,4 @@ describe(<%= component %>, function() {
         // test code here
     });
 });
+
