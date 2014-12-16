@@ -4,7 +4,6 @@
 Facebook's [React](https://facebook.github.io/react/) library and
 [Flux](http://facebook.github.io/flux/) architecture. Use it to quickly
 bootstrap your web application projects. 
-It is a modified version of [Aldo Nievas's](https://github.com/alduro) [generator](https://github.com/alduro/generator-flux-webapp).
 
 ## Batteries included
 * [Gulp](http://gulpjs.com) build system.
@@ -12,23 +11,21 @@ It is a modified version of [Aldo Nievas's](https://github.com/alduro) [generato
 * [React-hot-loader](http://gaearon.github.io/react-hot-loader/) for automated build on edit.
 * Beautiful [flat-ui](http://designmodo.github.io/Flat-UI/) theme for boostrap. 
 * [Jest](http://facebook.github.io/jest/) based unit testing.
+* Generators for react components and stores.
 
 # Usage
-## Install
+## Install locally
 ```js
+mkdir myapp && cd myapp
 npm install cybersiddhu/generator-flux-webapp
 ```
 
 ## Create project
-
 ```js
-mkdir demox && cd demox
-yo flux-webapp
+yo flux-webapp [appname]
 ```
 
 The above will generate a project with the following folder layout
-
-### Project Layout
 
 ```
 ├── build/                      # The folder for compiled output, will be created after running the first build.
@@ -67,7 +64,8 @@ The above will generate a project with the following folder layout
 
 ```
 
-## Default tasks included
+## Working with the Application
+The following functionality are included with the application by default
 
 ### Run
 
@@ -96,7 +94,7 @@ gulp deploy
 
 This will deploy the build to the github [pages](https://pages.github.com/)
 
-### Stylesheet
+### CSS
 
 ```js
 gulp setup:flatcss
@@ -112,3 +110,33 @@ application import it from the main entry point(app.jsx).
 ```js
 npm test
 ```
+
+It will fire a ```jest``` based unit tests, for stores and components by default.
+
+### Generators
+__Note:Generators are expected to be run from the root directory of your application.__
+
+Also all the generated stub files include some boilerplate code to get started.
+
+#### Component
+
+```js
+yo flux-webapp:component photo
+```
+
+Will produces ```src/scripts/components/Photo.jsx``` and
+```src/scripts/components/__tests__/Photo-test.js```
+
+#### Store
+
+```js
+yo flux-webapp:store photo
+```
+
+Will produces ```src/scripts/stores/PhotoStore.js``` and
+```src/scripts/stores__tests__/PhotoStore-test.js```
+
+
+# Props
+Thanks to [Aldo Nievas's](https://github.com/alduro), it is a modified version
+of his [generator](https://github.com/alduro/generator-flux-webapp).
