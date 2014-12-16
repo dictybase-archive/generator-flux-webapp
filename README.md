@@ -11,6 +11,7 @@ bootstrap your web application projects.
 * [React-hot-loader](http://gaearon.github.io/react-hot-loader/) for automated build on edit.
 * Beautiful [flat-ui](http://designmodo.github.io/Flat-UI/) theme for boostrap. 
 * [Jest](http://facebook.github.io/jest/) based unit testing.
+* React [router](https://github.com/rackt/react-router) for client side routing.
 * Generators for react components and stores.
 
 # Usage
@@ -67,6 +68,30 @@ The above will generate a project with the following folder layout
 ## Working with the Application
 The following functionality are included with the application by default
 
+### Generators
+__Note:Generators are expected to be run from the root directory of your application.__
+
+Also all the generated stub files include some boilerplate code to get started.
+
+#### Component
+
+```js
+yo flux-webapp:component photo
+```
+
+Will produces ```src/scripts/components/Photo.jsx``` and
+```src/scripts/components/__tests__/Photo-test.js```
+
+#### Store
+
+```js
+yo flux-webapp:store photo
+```
+
+Will produces ```src/scripts/stores/PhotoStore.js``` and
+```src/scripts/stores__tests__/PhotoStore-test.js```
+
+
 ### Run
 
 ```js
@@ -113,28 +138,10 @@ npm test
 
 It will fire a ```jest``` based unit tests, for stores and components by default.
 
-### Generators
-__Note:Generators are expected to be run from the root directory of your application.__
-
-Also all the generated stub files include some boilerplate code to get started.
-
-#### Component
-
-```js
-yo flux-webapp:component photo
-```
-
-Will produces ```src/scripts/components/Photo.jsx``` and
-```src/scripts/components/__tests__/Photo-test.js```
-
-#### Store
-
-```js
-yo flux-webapp:store photo
-```
-
-Will produces ```src/scripts/stores/PhotoStore.js``` and
-```src/scripts/stores__tests__/PhotoStore-test.js```
+### Client side routing
+React [router](https://github.com/rackt/react-router) can be used for managing
+routes. Edit ```src/scripts/routes.jsx``` to manipulate routing definition for
+the application.
 
 
 # Props
