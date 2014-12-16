@@ -49,6 +49,6 @@
   },
   "scripts": {
     "start": "gulp",
-    "test": "node_modules/.bin/jest",
+    "test": "node_modules/.bin/jest"
   }
 }
