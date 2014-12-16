@@ -71,6 +71,9 @@ var FluxWebappGenerator = yeoman.generators.Base.extend({
         this.copy('src/router.js', 'src/scripts/router.js');
         this.copy('src/app.jsx', 'src/scripts/app.jsx');
     },
+    stylesheets: function () {
+        this.copy('src/styles/main.less', 'src/styles/main.less');
+    },
     gulpfiles: function () {
         this.copy('gulpfile.js', 'gulpfile.js');
         this.copy('gulp/dev_server.js', 'gulp/dev_server.js');
