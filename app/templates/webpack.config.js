@@ -5,7 +5,7 @@ module.exports = {
     debug: false,
     devtool: false,
     output: {
-        filename: 'genepage.js',
+        filename: 'app.js',
         path: './build',
     },
     entry: [

@@ -5,7 +5,7 @@ var ipAddr = os.networkInterfaces().eth0[0].address;
 module.exports = {
     devtool: "#inline-source-map",
     output: {
-        filename: 'genepage.js',
+        filename: 'app.js',
         path: __dirname,
         publicPath: '/js/'
     },
