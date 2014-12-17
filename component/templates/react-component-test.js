@@ -1,4 +1,4 @@
-jest.dontMock('../' + <%= component %> + '.jsx');
+jest.dontMock('../<%= component %>.jsx');
 
 describe(<%= component %>, function() {
     var React = require('react/addons');

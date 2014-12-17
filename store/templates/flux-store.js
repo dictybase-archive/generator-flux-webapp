@@ -31,4 +31,4 @@ AppDispatcher.register(function(payload) {
     }
 });
 
-module.exports = <%= component %>
+module.exports = <%= component %>;

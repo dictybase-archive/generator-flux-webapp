@@ -10,4 +10,4 @@ var <%= component %> = React.createClass({
 
 });
 
-module.exports = <%= component %>
+module.exports = <%= component %>;
