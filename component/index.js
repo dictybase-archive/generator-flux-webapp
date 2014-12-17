@@ -11,16 +11,16 @@ module.exports = yeoman.generators.NamedBase.extend({
     componentfile: function () {
         var compName = this._.camelize(this.name);
         this.fs.copyTpl(
-          this.templatePath('react-component.jsx'),
-          this.destinationPath(['src/scripts/components/', compName, '.jsx'].join('')),
+          'react-component.jsx',
+          ['src/scripts/components/', compName, '.jsx'].join(''),
           { component: compName }
         );
     },
     testfile: function () {
         var compName = this._.camelize(this.name);
         this.fs.copyTpl(
-          this.templatePath('react-component-test.js'),
-          this.destinationPath(['src/scripts/components/__tests__', compName, '-test.js'].join('')),
+          'react-component-test.js',
+          ['src/scripts/components/__tests__', compName, '-test.js'].join(''),
           { component: compName }
         );
     }
