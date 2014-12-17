@@ -12,7 +12,7 @@ module.exports = yeoman.generators.NamedBase.extend({
       }
       return this._.capitalize(this.name);
   },
-  writing: function () {
+  writing: {
     storefile: function () {
         var compName = this.normalizeName();
         this.fs.copyTpl(
