@@ -7,7 +7,7 @@ module.exports = yeoman.generators.NamedBase.extend({
     this.log(yosay(['Going to create store',  this.name ].join(' ')));
   },
   normalizeName: function () {
-      if (this._.strRight(this.name, '-')) {
+      if (this._.include(this.name, '-')) {
           return this._.camelize(this.name);
       }
       return this._.capitalize(this.name);
