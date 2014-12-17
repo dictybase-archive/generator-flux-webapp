@@ -1,5 +1,6 @@
+var React = require('react');
 var Router = require('react-router');
-var {DefaultRoute} = Router;
+var {Route, DefaultRoute} = Router;
 
 var routes = (
     <Route handler={}>
