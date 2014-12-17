@@ -8,9 +8,9 @@ module.exports = yeoman.generators.NamedBase.extend({
   },
   normalizeName: function () {
       if (this._.include(this.name, '-')) {
-          return this._.camelize(this.name);
+          return [this._.camelize(this.name), 'Store'].join('');
       }
-      return this._.capitalize(this.name);
+      return [this._.capitalize(this.name), 'Store'].join('');
   },
   writing: {
     storefile: function () {
