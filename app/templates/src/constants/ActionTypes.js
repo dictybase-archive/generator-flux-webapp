@@ -1,7 +1,6 @@
+var keyMirror = require('keymirror');
 module.exports = {
-    ActionTypes: {
-        //Action types here
-
-    }
-
+    ActionTypes: keyMirror ({
+        EXAMPLE_ACTION: null
+    });
 };
